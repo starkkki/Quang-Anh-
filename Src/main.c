@@ -15,7 +15,9 @@
  *
  ******************************************************************************
  */
-
+#include"main.h"
+#define GPIOD_BASE_ADDR 0x40020C00
+#define GPIOA_BASE_ADDR 0x40020000
 
 void buttonB1Init(){
 	__HAL_RCC_GPIOA_CLK_ENABLE();
