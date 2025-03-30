@@ -16,8 +16,6 @@
  ******************************************************************************
  */
 
-#include "buttons.h"
-#include "LEDs.h"
 
 void buttonB1Init(){
 	__HAL_RCC_GPIOA_CLK_ENABLE();
