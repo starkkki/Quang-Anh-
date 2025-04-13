@@ -9,8 +9,9 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include Startup/subdir.mk
--include Src/subdir.mk
+-include Drivers/STM32F4xx_HAL_Driver/Src/subdir.mk
+-include Core/Startup/subdir.mk
+-include Core/Src/subdir.mk
 -include objects.mk
 
 ifneq ($(MAKECMDGOALS),clean)
@@ -33,34 +34,34 @@ $(wildcard ../makefile.init) \
 $(wildcard ../makefile.targets) \
 
 
-BUILD_ARTIFACT_NAME := Btvn
+BUILD_ARTIFACT_NAME := btvn
 BUILD_ARTIFACT_EXTENSION := elf
 BUILD_ARTIFACT_PREFIX :=
 BUILD_ARTIFACT := $(BUILD_ARTIFACT_PREFIX)$(BUILD_ARTIFACT_NAME)$(if $(BUILD_ARTIFACT_EXTENSION),.$(BUILD_ARTIFACT_EXTENSION),)
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXECUTABLES += \
-Btvn.elf \
+btvn.elf \
 
 MAP_FILES += \
-Btvn.map \
+btvn.map \
 
 SIZE_OUTPUT += \
 default.size.stdout \
 
 OBJDUMP_LIST += \
-Btvn.list \
+btvn.list \
 
 
 # All Target
 all: main-build
 
 # Main-build Target
-main-build: Btvn.elf secondary-outputs
+main-build: btvn.elf secondary-outputs
 
 # Tool invocations
-Btvn.elf Btvn.map: $(OBJS) $(USER_OBJS) C:\Users\Acer\ Aspire\ V3\Documents\imic\laptrinhnhung\Btvn\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Btvn.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Acer Aspire V3\Documents\imic\laptrinhnhung\Btvn\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Btvn.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+btvn.elf btvn.map: $(OBJS) $(USER_OBJS) C:\Users\Acer\ Aspire\ V3\Documents\imic\laptrinhnhung\btvn\STM32F411VETX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "btvn.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Acer Aspire V3\Documents\imic\laptrinhnhung\btvn\STM32F411VETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="btvn.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
@@ -69,14 +70,14 @@ default.size.stdout: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
 	@echo 'Finished building: $@'
 	@echo ' '
 
-Btvn.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "Btvn.list"
+btvn.list: $(EXECUTABLES) makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-objdump -h -S $(EXECUTABLES) > "btvn.list"
 	@echo 'Finished building: $@'
 	@echo ' '
 
 # Other Targets
 clean:
-	-$(RM) Btvn.elf Btvn.list Btvn.map default.size.stdout
+	-$(RM) btvn.elf btvn.list btvn.map default.size.stdout
 	-@echo ' '
 
 secondary-outputs: $(SIZE_OUTPUT) $(OBJDUMP_LIST)

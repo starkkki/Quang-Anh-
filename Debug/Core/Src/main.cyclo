@@ -1,0 +1,6 @@
+../Core/Src/main.c:12:6:LedInit	1
+../Core/Src/main.c:20:6:buttonInit	1
+../Core/Src/main.c:44:6:LedCtrl	2
+../Core/Src/main.c:53:5:readButton	1
+../Core/Src/main.c:59:6:EXTI0_IRQHandler	3
+../Core/Src/main.c:73:5:main	4
